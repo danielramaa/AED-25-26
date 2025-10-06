@@ -1,0 +1,22 @@
+aed001
+Invariante:
+
+i = k-1
+counts = nº exato de valores lidos (a0,...,ai-1) que são iguais a 42
+n mantem o seu valor inicial
+
+i ∈ [0,n]
+Assumir o invariante e que estamoa na k-ésima iteração
+
+i=k-1;
+i<n -> falso
+i>= n <=> k-1 >= n <=> k >= n+1
+
+k=n+1, i=k-1 <=> i= n+1-1 <=> i=n
+counts tem nº exato de valores =42 (a0,...,ai-1)
+counts tem nº exato de valores =42 (a0,...,an-1)
+
+
+resto esta em foto 23/09/25
+
+https://www.dcc.fc.up.pt/~pribeiro/aulas/aed2526/practical/aed001_source.html
