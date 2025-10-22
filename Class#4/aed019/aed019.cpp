@@ -7,7 +7,6 @@ struct Number {
     int bits_{};
 };
 
-
 int countBits(int n) {
     int ans = 0;
     while (n > 0) {
@@ -17,13 +16,12 @@ int countBits(int n) {
     return ans;
 }
 
-bool compare(int n, int n1) {
-
-    return n < n1;
+bool compare(const Number& a, const Number& b) {
+    if (a.bits_ != b.bits_) return a.bits_ > b.bits_;
+    return a.n_ < b.n_;
 }
 
 int main() {
-
     int n;
     std::cin >> n;
     std::vector<Number> nums;
@@ -36,8 +34,7 @@ int main() {
         nums.push_back(item);
     }
 
-    std::sort(nums.begin(), nums.end(),compare(nums[i].n_, nums[i+1].n_));
-
+    std::sort(nums.begin(), nums.end(), compare);
 
     for (int i = 0; i < (int)nums.size(); i++) {
         std::cout << nums[i].n_ << std::endl;
