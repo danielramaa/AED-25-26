@@ -233,6 +233,7 @@ public:
     return path(root, s, 0);
   }
 
+  // Count nodes at depth level k
   int nodesLevel(int k) {
     return nodesLevel(root, k);
   }
