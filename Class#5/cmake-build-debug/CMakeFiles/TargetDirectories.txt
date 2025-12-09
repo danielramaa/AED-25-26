@@ -1,3 +1,0 @@
-/home/danielramaa/Documents/2025-26/AED/Class#5/cmake-build-debug/CMakeFiles/aed026.dir
-/home/danielramaa/Documents/2025-26/AED/Class#5/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/danielramaa/Documents/2025-26/AED/Class#5/cmake-build-debug/CMakeFiles/rebuild_cache.dir
