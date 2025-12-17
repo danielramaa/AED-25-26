@@ -299,15 +299,15 @@ public:
         return nodesLevel(k-1, n->left) + nodesLevel(k-1, n->right);
     }
 
-    int countEven(){
-        return root;
+    int countEven() {
+      return countEven(root);
     }
 
-    int countEven(Node *n){
-
-      
-        
-
+    int countEven(Node *n) {
+      if (n == nullptr) return 0;
+      int count = countEven(n->left) + countEven(n->right);
+      if (n->value % 2 == 0) count++;
+      return count;
     }
 };
 
