@@ -15,6 +15,7 @@
 #include <string>
 #include <queue>
 #include <stack>
+#include <vector>
 
 template <class T> class BTree {
 private:
@@ -299,18 +300,76 @@ public:
         return nodesLevel(k-1, n->left) + nodesLevel(k-1, n->right);
     }
 
-    int countEven() {
-      return countEven(root);
+  int countEven() {
+    return countEven(root);
+  }
+
+  int countEven(Node *n) {
+    if (n == nullptr) return 0;
+    int count = countEven(n->left) + countEven(n->right);
+    if (n->value % 2 == 0) count++;
+    return count;
+  }
+
+  std::vector<int> sumLevels() {
+    std::vector<int> res;
+    sumLevels(root, 0, res);
+    return res;
+  }
+
+  void sumLevels(Node *n, int level, std::vector<int> &res) {
+    if (n == nullptr) return;
+    
+    if (level >= (int)res.size()) {
+      res.push_back(n->value);
+    } else {
+      res[level] += n->value;
     }
 
-    int countEven(Node *n) {
-      if (n == nullptr) return 0;
-      int count = countEven(n->left) + countEven(n->right);
-      if (n->value % 2 == 0) count++;
-      return count;
+    sumLevels(n->left, level + 1, res);
+    sumLevels(n->right, level + 1, res);
+  }
+
+  struct PathSum {
+    T sum;
+    std::string path;
+  };
+
+  std::string maxSum() {
+    if (root == nullptr) return "";
+    return maxSumHelper(root).path;
+  }
+
+  PathSum maxSumHelper(Node *n) {
+    if (n->left == nullptr && n->right == nullptr) {
+      return {n->value, ""};
     }
+
+    T currentMaxSum = -1;
+    std::string currentMaxPath = "";
+    bool initialized = false;
+
+    if (n->left != nullptr) {
+      PathSum res = maxSumHelper(n->left);
+      currentMaxSum = res.sum;
+      currentMaxPath = "L" + res.path;
+      initialized = true;
+    }
+
+    if (n->right != nullptr) {
+      PathSum res = maxSumHelper(n->right);
+      if (!initialized || res.sum > currentMaxSum) {
+        currentMaxSum = res.sum;
+        currentMaxPath = "R" + res.path;
+      }
+    }
+
+    return {n->value + currentMaxSum, currentMaxPath};
+  }
+
+
+
 };
-
 
 #endif
 
